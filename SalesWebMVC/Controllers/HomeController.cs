@@ -17,8 +17,16 @@ namespace SalesWebMVC.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            // A mensagem será acessada na View
+            ViewData["Message"] = "Aplicação desenvolvida em ASP.NET Core no Curso de C#.";
+            ViewData["Author"] = "Davi Francisco";
+            ViewData["Professor"] = "Nelio Alves";
 
+            // O método View é method builder que retorna um objeto do tipo ViewResult
+            // Ele vai buscar dentro da pasta Home um arquivo .cshtml que contém o mesmo nome
+            // da ação que chamou ele.
+            // Aqui ele vai acessar a pasta Views, depois Home e vai retornar a página
+            // About.cshtml.
             return View();
         }
 

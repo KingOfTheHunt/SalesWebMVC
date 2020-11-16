@@ -56,6 +56,7 @@ namespace SalesWebMVC
             {
                 routes.MapRoute(
                     name: "default",
+                    // Define qual página deve ser exibia ao acessar o site
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
