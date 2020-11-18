@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Data;
+using SalesWebMVC.Services;
 
 namespace SalesWebMVC
 {
@@ -33,6 +34,7 @@ namespace SalesWebMVC
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Faz com que os serviços injetados sejam acessados em todo o aplicativo.
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -43,8 +45,11 @@ namespace SalesWebMVC
                     builder => builder.MigrationsAssembly("SalesWebMVC")));
 
             // Adicionando uma dependência.
-            // Registra o SeedingService no sistema de injeção de independência da aplicação.
+            // Registra o SeedingService no sistema de injeção de dependência da aplicação.
             services.AddScoped<SeedingService>();
+
+            // Adicionando a dependência do SellerService
+            services.AddScoped<SellerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
