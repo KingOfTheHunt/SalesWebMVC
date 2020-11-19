@@ -18,9 +18,11 @@ namespace SalesWebMVC.Models
         [Display(Name = "Salário Base")]
         [DisplayFormat(DataFormatString = "{0:c2}")]
         public double BaseSalary { get; set; }
+        public Department Department { get; set; }
+        // Garante a integridade referêncial.
+        public int DepartmentId { get; set; }
         // Representa qualquer tipo de coleção
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
-        public Department Department { get; set; }
 
         public Seller()
         {
@@ -33,6 +35,7 @@ namespace SalesWebMVC.Models
             Email = email;
             BirthDate = birthDate;
             BaseSalary = baseSalary;
+            Department = department;
         }
 
         public void AddSales(SalesRecord sale)

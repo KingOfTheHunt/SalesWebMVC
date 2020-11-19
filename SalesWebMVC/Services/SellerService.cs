@@ -32,6 +32,8 @@ namespace SalesWebMVC.Services
         {
             try
             {
+                // Solução provisória
+                seller.Department = _context.Department.First();
                 // Adicionando ao banco
                 _context.Add(seller);
                 // Salvando as alterações
