@@ -27,5 +27,20 @@ namespace SalesWebMVC.Services
                 throw new Exception(e.Message);
             }
         }
+
+        public void Insert(Seller seller)
+        {
+            try
+            {
+                // Adicionando ao banco
+                _context.Add(seller);
+                // Salvando as alterações
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 }

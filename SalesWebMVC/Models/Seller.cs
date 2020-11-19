@@ -16,7 +16,7 @@ namespace SalesWebMVC.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
         [Display(Name = "Salário Base")]
-        [DisplayFormat(DataFormatString = "{0:F2}")]
+        [DisplayFormat(DataFormatString = "{0:c2}")]
         public double BaseSalary { get; set; }
         // Representa qualquer tipo de coleção
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();

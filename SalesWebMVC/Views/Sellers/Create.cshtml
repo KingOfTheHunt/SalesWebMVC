@@ -1,0 +1,38 @@
+﻿@model SalesWebMVC.Models.Seller
+
+@{
+    ViewData["Title"] = "Adicionar";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>Vendedor</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <!--Chama o Create que utiliza o método Post-->
+        <form asp-action="Create">
+            <div class="form-group">
+                <!--Associoando o formulário aos atributos do model-->
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseSalary" class="control-label"></label>
+                <input asp-for="BaseSalary" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default" asp->Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>
