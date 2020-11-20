@@ -44,5 +44,33 @@ namespace SalesWebMVC.Controllers
             // redirecionando para o index
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            // Precisa usar a propriedade Value porque o id é nullable.
+            var seller = _sellerService.FindById(id.Value);
+            
+            if (seller == null)
+            {
+                return NotFound();
+            }
+
+            return View(seller);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _sellerService.Remove(id);
+
+            // Redirecionando para o Index
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

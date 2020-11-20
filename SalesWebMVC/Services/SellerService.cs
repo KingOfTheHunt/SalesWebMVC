@@ -28,6 +28,34 @@ namespace SalesWebMVC.Services
             }
         }
 
+        public Seller FindById(int id)
+        {
+            try
+            {
+                return _context.Seller.FirstOrDefault(s => s.Id == id);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void Remove(int id)
+        {
+            try
+            {
+                // Encontra na coleção um objeto que tem o mesmo id que foi passado como parâmetro.
+                var seller = _context.Seller.Find(id);
+                _context.Seller.Remove(seller);
+                // Salvando as alterações
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public void Insert(Seller seller)
         {
             try
