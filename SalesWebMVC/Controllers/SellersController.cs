@@ -1,17 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SalesWebMVC.Models;
+using SalesWebMVC.Models.ViewModels;
 using SalesWebMVC.Services;
+using System.Collections.Generic;
 
 namespace SalesWebMVC.Controllers
 {
     public class SellersController : Controller
     {
         private readonly SellerService _sellerService;
+        private readonly DepartmentService _departmentService;
 
         // Injetando a dependência
-        public SellersController(SellerService sellerService)
+        public SellersController(SellerService sellerService, DepartmentService departmentService)
         {
             _sellerService = sellerService;
+            _departmentService = departmentService;
         }
 
         public IActionResult Index()
@@ -24,7 +28,10 @@ namespace SalesWebMVC.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            ICollection<Department> departments = _departmentService.FindAll();
+            var viewModel = new SellerFormViewModel() { Departments = departments };
+
+            return View(viewModel);
         }
 
         // Informando que o controller vai utilizar o método POST para realizar o envio de dados

@@ -1,4 +1,4 @@
-﻿@model SalesWebMVC.Models.Seller
+﻿@model SalesWebMVC.Models.ViewModels.SellerFormViewModel
 
 @{
     ViewData["Title"] = "Adicionar";
@@ -15,20 +15,30 @@
         <form asp-action="Create">
             <div class="form-group">
                 <!--Associoando o formulário aos atributos do model-->
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Seller.Name" class="control-label"></label>
+                <input asp-for="Seller.Name" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="Seller.Email" class="control-label"></label>
+                <input asp-for="Seller.Email" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label"></label>
-                <input asp-for="BirthDate" class="form-control" />
+                <label asp-for="Seller.BirthDate" class="control-label"></label>
+                <input asp-for="Seller.BirthDate" class="form-control" />
             </div>
             <div class="form-group">
-                <label asp-for="BaseSalary" class="control-label"></label>
-                <input asp-for="BaseSalary" class="form-control" />
+                <label asp-for="Seller.BaseSalary" class="control-label"></label>
+                <input asp-for="Seller.BaseSalary" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.DepartmentId" class="control-label"></label>
+                <!--Acesssando os dados da lista do ViewModel-->
+                <!--asp-items contrói uma caixa de seleção com base na coleção passada por parâmetro
+                    ele recebe um SelectList que é a classe resposável pela contrução da caixa de seleção
+                    e este SelectList recebe três parâmetros que são a fonte de dados, o valor do elemento e 
+                    o nome que vai aparecer na caixa-->
+                <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments,"Id","Name"))" 
+                        class="form-control"></select>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default" asp->Adicionar</button>

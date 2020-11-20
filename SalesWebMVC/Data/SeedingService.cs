@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace SalesWebMVC.Data
 {
-    // Popula o banco de dados
+    // Povoa o banco de dados
     public class SeedingService
     {
         // Registrando uma dependência do DbContext.
