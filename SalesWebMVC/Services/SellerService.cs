@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Data;
 using SalesWebMVC.Models;
 
@@ -32,7 +33,11 @@ namespace SalesWebMVC.Services
         {
             try
             {
-                return _context.Seller.FirstOrDefault(s => s.Id == id);
+                // Só carrega os dados da tabela Seller
+                // return _context.Seller.FirstOrDefault(s => s.Id == id);
+                // Agora vai realizar um join na tabela Seller e Department e retornar os dados das duas tabelas.
+                // Eager loading carrega outro objetos que estão associados a um objeto principal.
+                return _context.Seller.Include(dept => dept.Department).FirstOrDefault(s => s.Id == id);
             }
             catch (Exception e)
             {
