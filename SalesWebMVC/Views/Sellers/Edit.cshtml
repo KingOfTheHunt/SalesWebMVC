@@ -1,0 +1,50 @@
+﻿@model SalesWebMVC.Models.ViewModels.SellerFormViewModel
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>Vendedor</h4>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <!--Chama o Create que utiliza o método Post-->
+        <form asp-action="Edit">
+            <div class="form-group">
+                <!--Associando o input ao valor do Seller.Id-->
+                <input type="hidden" asp-for="Seller.Id" />
+                <!--Associoando o formulário aos atributos do model-->
+                <label asp-for="Seller.Name" class="control-label"></label>
+                <input asp-for="Seller.Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.Email" class="control-label"></label>
+                <input asp-for="Seller.Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.BirthDate" class="control-label"></label>
+                <input asp-for="Seller.BirthDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.BaseSalary" class="control-label"></label>
+                <input asp-for="Seller.BaseSalary" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller.DepartmentId" class="control-label"></label>
+                <!--Acesssando os dados da lista do ViewModel-->
+                <!--asp-items contrói uma caixa de seleção com base na coleção passada por parâmetro
+                    ele recebe um SelectList que é a classe resposável pela contrução da caixa de seleção
+                    e este SelectList recebe três parâmetros que são a fonte de dados, o valor do elemento e
+                    o nome que vai aparecer na caixa-->
+                <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments,"Id","Name"))"
+                        class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default" asp->Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
