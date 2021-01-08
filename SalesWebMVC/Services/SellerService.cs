@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Data;
 using SalesWebMVC.Models;
+using SalesWebMVC.Services.Exceptions;
 
 namespace SalesWebMVC.Services
 {
@@ -73,6 +74,25 @@ namespace SalesWebMVC.Services
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+
+        public void Update(Seller seller)
+        {
+            try
+            {
+                if(!_context.Seller.Any(x => x.Id == seller.Id))
+                {
+                    throw new NotFoundException("Id não encontrado");
+                }
+
+                // Atualizando um registro no banco.
+                _context.Update(seller);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                throw new DbConcurrentException(ex.Message);
             }
         }
     }
