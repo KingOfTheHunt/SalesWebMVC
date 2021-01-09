@@ -11,8 +11,10 @@ namespace SalesWebMVC.Models
         [Display(Name = "Nome")]
         public string Name { get; set; }
         [Display(Name = "E-mail")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        [Display(Name = "Data de Nascimento")]
+        [Display(Name = "Data de nascimento")]
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
         [Display(Name = "Salário Base")]
@@ -20,6 +22,7 @@ namespace SalesWebMVC.Models
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
         // Garante a integridade referêncial.
+        [Display(Name = "Departamento")]
         public int DepartmentId { get; set; }
         // Representa qualquer tipo de coleção
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
