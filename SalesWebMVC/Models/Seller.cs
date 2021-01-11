@@ -31,7 +31,9 @@ namespace SalesWebMVC.Models
         [DisplayFormat(DataFormatString = "{0:c2}")]
         public double BaseSalary { get; set; }
 
+        [Display(Name = "Departamento")]
         public Department Department { get; set; }
+
         // Garante a integridade referêncial.
         [Display(Name = "Departamento")]
         public int DepartmentId { get; set; }

@@ -51,6 +51,8 @@ namespace SalesWebMVC
             services.AddScoped<SellerService>();
             // Adicionando a dependência do DepartmentService
             services.AddScoped<DepartmentService>();
+            // Adicionando a dependência do SalesRecordService
+            services.AddScoped<SalesRecordService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
