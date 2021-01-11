@@ -3,6 +3,8 @@ using SalesWebMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWebMVC.Services
 {
@@ -15,11 +17,14 @@ namespace SalesWebMVC.Services
             _context = context;
         }
 
-        public List<Department> FindAll()
+        // Transformando a função em assíncrona.
+        // Agora a aplicação não ficará travada esperando que este método realize a consulta do departamentos.
+        public async Task<List<Department>> FindAllAsync()
         {
             try
             {
-                return _context.Department.OrderBy(d => d.Name).ToList();
+                // O await avisa ao compilador que a chamada é assíncrona.
+                return await _context.Department.OrderBy(d => d.Name).ToListAsync();
             }
             catch (Exception e)
             {
