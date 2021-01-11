@@ -64,7 +64,7 @@ namespace SalesWebMVC.Controllers
 
             // Precisa usar a propriedade Value porque o id é nullable.
             var seller = await _sellerService.FindByIdAsync(id.Value);
-            
+
             if (seller == null)
             {
                 return RedirectToAction(nameof(Error), new { message = "Vendedor não encontrado." });
@@ -77,10 +77,17 @@ namespace SalesWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _sellerService.RemoveAsync(id);
+            try
+            {
+                await _sellerService.RemoveAsync(id);
 
-            // Redirecionando para o Index
-            return RedirectToAction(nameof(Index));
+                // Redirecionando para o Index
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -138,7 +145,7 @@ namespace SalesWebMVC.Controllers
 
             try
             {
-                 await _sellerService.UpdateAsync(seller);
+                await _sellerService.UpdateAsync(seller);
             }
             catch (NotFoundException ex)
             {
@@ -154,9 +161,12 @@ namespace SalesWebMVC.Controllers
 
         public IActionResult Error(string message)
         {
-            var viewModel = new ErrorViewModel() { Message = message, 
+            var viewModel = new ErrorViewModel()
+            {
+                Message = message,
                 // Acessa o Id interno da requisição.
-                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier };
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
 
             return View(viewModel);
         }

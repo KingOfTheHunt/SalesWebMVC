@@ -57,9 +57,9 @@ namespace SalesWebMVC.Services
                 // Salvando as alterações
                 await _context.SaveChangesAsync();
             }
-            catch (Exception e)
+            catch (DbUpdateException e)
             {
-                throw new Exception(e.Message);
+                throw new IntegrityException("Não é possível realizar a remoção do vendedor(a), pois ele(a) tem vendas.");
             }
         }
 
