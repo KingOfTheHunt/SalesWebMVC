@@ -11,6 +11,7 @@ namespace SalesWebMVC.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Date { get; set; }
         [Display(Name = "Quantia")]
+        [DisplayFormat(DataFormatString = "{0:c2}")]
         public double Amount { get; set; }
         public SalesStatus SalesStatus { get; set; }
         [Display(Name = "Vendedor")]
